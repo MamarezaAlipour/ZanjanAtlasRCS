@@ -1,5 +1,5 @@
 ﻿from data_loader import load_accident_data, load_geo_data
-from map_utils import create_map, add_geojson, add_logo, add_count_box, add_aquatic_markers
+from map_utils import create_map, add_geojson, add_logo, add_count_box, add_aquatic_markers, add_paygah_markers
 
 def generate_yearly_aquatic_maps(excel_path, logo_path, shp_path):
     df = load_accident_data(excel_path)
@@ -14,4 +14,5 @@ def generate_yearly_aquatic_maps(excel_path, logo_path, shp_path):
         add_aquatic_markers(map_zanjan, df_year)
         add_logo(map_zanjan, logo_path)
         add_count_box(map_zanjan, incident_type, len(df_year), f"سال {year}")
+        add_paygah_markers(map_zanjan, "./paygah.xlsx", "./paygah_icon.png")
         map_zanjan.save(f"atlas_zanjan_Aquatic_{year}.html")

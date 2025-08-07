@@ -1,4 +1,5 @@
-﻿from jaddeh_all_years import generate_all_years_map
+﻿import pandas as pd
+from jaddeh_all_years import generate_all_years_map
 from jaddeh_by_year import generate_yearly_maps
 from snow_all_years import generate_all_years_snow_map
 from snow_by_year import generate_yearly_snow_maps
@@ -47,57 +48,66 @@ from deceased_by_year_jaddeh_circle import generate_yearly_deceased_jaddeh_circl
 from transferred_all_years_jaddeh_heatmap import generate_all_years_transferred_jaddeh_heatmap
 from transferred_all_years_jaddeh_circle import generate_all_years_transferred_jaddeh_circle_map
 from transferred_by_year_jaddeh_circle import generate_yearly_transferred_jaddeh_circle_maps
+from nejatfanni_all_years_heatmap import generate_all_years_nejatfanni_heatmap
+from nejatfanni_all_years_circle import generate_all_years_nejatfanni_circle_map
+from nejatfanni_by_year_circle import generate_yearly_nejatfanni_circle_maps
 
+nejatfanni_path= "./nejatfanni.xlsx"
 excel_path = "./havades.xlsx"
 logo_path = "./logo.png"
-shp_path = "./Export_Output_3.shp"
+shp_path = "./Export_Output_4.shp"
+paygah_path = "./paygah.xlsx"
+paygah_icon_path = "./paygah_icon.png"
 
-# generate_all_years_map(excel_path, logo_path, shp_path)
-# generate_yearly_maps(excel_path, logo_path, shp_path)
-# generate_all_years_snow_map(excel_path, logo_path, shp_path)
-# generate_yearly_snow_maps(excel_path, logo_path, shp_path)
-# generate_all_years_flood_map(excel_path, logo_path, shp_path)
-# generate_yearly_flood_maps(excel_path, logo_path, shp_path)
-# generate_all_years_mountain_map(excel_path, logo_path, shp_path)
-# generate_yearly_mountain_maps(excel_path, logo_path, shp_path)
-# generate_all_years_fire_map(excel_path, logo_path, shp_path)
-# generate_yearly_fire_maps(excel_path, logo_path, shp_path)
-# generate_all_years_aquatic_map(excel_path, logo_path, shp_path)
-# generate_yearly_aquatic_maps(excel_path, logo_path, shp_path)
-# generate_all_years_injury_jaddeh_circle_map(excel_path, logo_path, shp_path)
-# generate_yearly_injury_jaddeh_circle_maps(excel_path, logo_path, shp_path)
-# generate_all_years_injury_jaddeh_heatmap(excel_path, logo_path, shp_path)
-# generate_all_years_jaddeh_heatmap(excel_path, logo_path, shp_path)
-# generate_all_years_jaddeh_circle_map(excel_path, logo_path, shp_path)
-# generate_yearly_jaddeh_circle_maps(excel_path, logo_path, shp_path)
-# generate_all_years_mountain_heatmap(excel_path, logo_path, shp_path)
-# generate_all_years_mountain_circle_map(excel_path, logo_path, shp_path)
-# generate_yearly_mountain_circle_maps(excel_path, logo_path, shp_path)
-# generate_all_years_flood_heatmap(excel_path, logo_path, shp_path)
-# generate_all_years_flood_circle_map(excel_path, logo_path, shp_path)
-# generate_yearly_flood_circle_maps(excel_path, logo_path, shp_path)
-# generate_all_years_snow_heatmap(excel_path, logo_path, shp_path)
-# generate_all_years_snow_circle_map(excel_path, logo_path, shp_path)
-# generate_yearly_snow_circle_maps(excel_path, logo_path, shp_path)
-# generate_all_years_fire_heatmap(excel_path, logo_path, shp_path)
-# generate_all_years_fire_circle_map(excel_path, logo_path, shp_path)
-# generate_yearly_fire_circle_maps(excel_path, logo_path, shp_path)
-# generate_all_years_treatment_heatmap(excel_path, logo_path, shp_path)
-# generate_all_years_treatment_circle_map(excel_path, logo_path, shp_path)
-# generate_yearly_treatment_circle_maps(excel_path, logo_path, shp_path)
-# generate_all_years_transferred_heatmap(excel_path, logo_path, shp_path)
-# generate_all_years_transferred_circle_map(excel_path, logo_path, shp_path)
-# generate_yearly_transferred_circle_maps(excel_path, logo_path, shp_path)
-# generate_all_years_deceased_heatmap(excel_path, logo_path, shp_path)
-# generate_all_years_deceased_circle_map(excel_path, logo_path, shp_path)
-# generate_yearly_deceased_circle_maps(excel_path, logo_path, shp_path)
-# generate_chain_accidents_map(excel_path, logo_path, shp_path)
-# generate_all_years_injury_heatmap(excel_path, logo_path, shp_path)
-# generate_all_years_injury_circle_map(excel_path, logo_path, shp_path)
-# generate_yearly_injury_circle_maps(excel_path, logo_path, shp_path)
+generate_all_years_map(excel_path, logo_path, shp_path)
+generate_yearly_maps(excel_path, logo_path, shp_path)
+generate_all_years_snow_map(excel_path, logo_path, shp_path)
+generate_yearly_snow_maps(excel_path, logo_path, shp_path)
+generate_all_years_flood_map(excel_path, logo_path, shp_path)
+generate_yearly_flood_maps(excel_path, logo_path, shp_path)
+generate_all_years_mountain_map(excel_path, logo_path, shp_path)
+generate_yearly_mountain_maps(excel_path, logo_path, shp_path)
+generate_all_years_fire_map(excel_path, logo_path, shp_path)
+generate_yearly_fire_maps(excel_path, logo_path, shp_path)
+generate_all_years_aquatic_map(excel_path, logo_path, shp_path)
+generate_yearly_aquatic_maps(excel_path, logo_path, shp_path)
+generate_all_years_injury_jaddeh_circle_map(excel_path, logo_path, shp_path)
+generate_yearly_injury_jaddeh_circle_maps(excel_path, logo_path, shp_path)
+generate_all_years_injury_jaddeh_heatmap(excel_path, logo_path, shp_path)
+generate_all_years_jaddeh_heatmap(excel_path, logo_path, shp_path)
+generate_all_years_jaddeh_circle_map(excel_path, logo_path, shp_path)
+generate_yearly_jaddeh_circle_maps(excel_path, logo_path, shp_path)
+generate_all_years_mountain_heatmap(excel_path, logo_path, shp_path)
+generate_all_years_mountain_circle_map(excel_path, logo_path, shp_path)
+generate_yearly_mountain_circle_maps(excel_path, logo_path, shp_path)
+generate_all_years_flood_heatmap(excel_path, logo_path, shp_path)
+generate_all_years_flood_circle_map(excel_path, logo_path, shp_path)
+generate_yearly_flood_circle_maps(excel_path, logo_path, shp_path)
+generate_all_years_snow_heatmap(excel_path, logo_path, shp_path)
+generate_all_years_snow_circle_map(excel_path, logo_path, shp_path)
+generate_yearly_snow_circle_maps(excel_path, logo_path, shp_path)
+generate_all_years_fire_heatmap(excel_path, logo_path, shp_path)
+generate_all_years_fire_circle_map(excel_path, logo_path, shp_path)
+generate_yearly_fire_circle_maps(excel_path, logo_path, shp_path)
+generate_all_years_treatment_heatmap(excel_path, logo_path, shp_path)
+generate_all_years_treatment_circle_map(excel_path, logo_path, shp_path)
+generate_yearly_treatment_circle_maps(excel_path, logo_path, shp_path)
+generate_all_years_transferred_heatmap(excel_path, logo_path, shp_path)
+generate_all_years_transferred_circle_map(excel_path, logo_path, shp_path)
+generate_yearly_transferred_circle_maps(excel_path, logo_path, shp_path)
+generate_all_years_deceased_heatmap(excel_path, logo_path, shp_path)
+generate_all_years_deceased_circle_map(excel_path, logo_path, shp_path)
+generate_yearly_deceased_circle_maps(excel_path, logo_path, shp_path)
+generate_chain_accidents_map(excel_path, logo_path, shp_path)
+generate_all_years_injury_heatmap(excel_path, logo_path, shp_path)
+generate_all_years_injury_circle_map(excel_path, logo_path, shp_path)
+generate_yearly_injury_circle_maps(excel_path, logo_path, shp_path)
 generate_all_years_deceased_jaddeh_heatmap(excel_path, logo_path, shp_path)
 generate_all_years_deceased_jaddeh_circle_map(excel_path, logo_path, shp_path)
 generate_yearly_deceased_jaddeh_circle_maps(excel_path, logo_path, shp_path)
 generate_all_years_transferred_jaddeh_heatmap(excel_path, logo_path, shp_path)
 generate_all_years_transferred_jaddeh_circle_map(excel_path, logo_path, shp_path)
 generate_yearly_transferred_jaddeh_circle_maps(excel_path, logo_path, shp_path)
+generate_all_years_nejatfanni_heatmap(nejatfanni_path, logo_path, shp_path)
+generate_all_years_nejatfanni_circle_map(nejatfanni_path, logo_path, shp_path)
+generate_yearly_nejatfanni_circle_maps(nejatfanni_path, logo_path, shp_path)

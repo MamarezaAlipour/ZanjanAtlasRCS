@@ -3,7 +3,7 @@ import geopandas as gpd
 import folium
 from folium import Element
 from folium.plugins import HeatMap
-from map_utils import add_injury_heatmap_legend
+from map_utils import add_injury_heatmap_legend, add_paygah_markers
 
 def generate_all_years_injury_jaddeh_heatmap(excel_path, logo_path, shp_path):
     df = pd.read_excel(excel_path)
@@ -55,5 +55,8 @@ def generate_all_years_injury_jaddeh_heatmap(excel_path, logo_path, shp_path):
     </div>
     """
     map_zanjan.get_root().html.add_child(Element(count_html))
+
+    # فرض بر این است که paygah.xlsx و paygah_icon.png در مسیر پروژه هستند
+    add_paygah_markers(map_zanjan, "./paygah.xlsx", "./paygah_icon.png")
 
     map_zanjan.save("atlas_zanjan_Jaddeh_Injury_HeatMap_AllYears.html")

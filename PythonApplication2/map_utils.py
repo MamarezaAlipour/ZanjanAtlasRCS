@@ -1,5 +1,6 @@
 ﻿import folium
 from folium import Element
+import pandas as pd
 
 def create_map(center, zoom):
     return folium.Map(location=center, zoom_start=zoom)
@@ -10,9 +11,25 @@ def add_geojson(map_obj, gdf):
 def add_markers(map_obj, df):
     for _, row in df.iterrows():
         popup_text = f"{row['شرح حادثه']}, {row['تاريخ وقوع حادثه']}"
+        popup_html = f"""
+        <style>
+        @font-face {{
+            font-family: 'BNazanin';
+            src: url('B-NAZANIN.TTF') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }}
+        .nazanin-popup {{
+            font-family: 'BNazanin', Tahoma, Arial, sans-serif !important;
+            font-size: 16px;
+            text-align: center;
+        }}
+        </style>
+        <div class="nazanin-popup">{popup_text}</div>
+        """
         folium.Marker(
             location=[row['عرض جغرافیایی(N)'], row['طول جغرافیایی(E)']],
-            popup=popup_text,
+            popup=folium.Popup(popup_html, max_width=350),
             icon=folium.Icon(color='blue')
         ).add_to(map_obj)
 
@@ -126,7 +143,23 @@ def add_value_circles(map_obj, df, value_column, value_label="مقدار", extra
             popup_parts = [f"{value_label}: {int(value)}"]
             for col in extra_popup_columns:
                 popup_parts.append(f"{col}: {row.get(col, '')}")
-            popup_text = "<br>".join(popup_parts)
+            popup_content = "<br>".join(popup_parts)
+            popup_html = f"""
+            <style>
+            @font-face {{
+                font-family: 'BNazanin';
+                src: url('B-NAZANIN.TTF') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+            }}
+            .nazanin-popup {{
+                font-family: 'BNazanin', Tahoma, Arial, sans-serif !important;
+                font-size: 16px;
+                text-align: center;
+            }}
+            </style>
+            <div class="nazanin-popup">{popup_content}</div>
+            """
             folium.Circle(
                 location=[row['عرض جغرافیایی(N)'], row['طول جغرافیایی(E)']],
                 radius=50 + value * 10,
@@ -134,7 +167,7 @@ def add_value_circles(map_obj, df, value_column, value_label="مقدار", extra
                 fill=True,
                 fill_color='crimson',
                 fill_opacity=0.5,
-                popup=popup_text
+                popup=folium.Popup(popup_html, max_width=350)
             ).add_to(map_obj)
 
 def add_legend(map_obj):
@@ -182,3 +215,38 @@ def add_injury_heatmap_legend(map_obj):
     </div>
     """
     map_obj.get_root().html.add_child(Element(legend_html))
+
+def add_paygah_markers(map_obj, paygah_path, icon_path):
+    df = pd.read_excel(paygah_path)
+    # فرض: ستون‌های 'N', 'E', 'نام پایگاه امداد و نجات'
+    for _, row in df.iterrows():
+        lat = row['N'] if 'N' in row else row['عرض جغرافیایی(N)']
+        lon = row['E'] if 'E' in row else row['طول جغرافیایی(E)']
+        name = row['نام پایگاه امداد و نجات']
+        if pd.notnull(lat) and pd.notnull(lon) and pd.notnull(name):
+            icon = folium.CustomIcon(
+                icon_image=icon_path,
+                icon_size=(40, 40),
+                icon_anchor=(20, 20)
+            )
+            popup_html = f"""
+            <style>
+            @font-face {{
+                font-family: 'BNazanin';
+                src: url('B-NAZANIN.TTF') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+            }}
+            .nazanin-popup {{
+                font-family: 'BNazanin', Tahoma, Arial, sans-serif !important;
+                font-size: 16px;
+                text-align: center;
+            }}
+            </style>
+            <div class="nazanin-popup" style="min-width:200px;white-space:nowrap;">{name}</div>
+            """
+            folium.Marker(
+                location=[float(lat), float(lon)],
+                icon=icon,
+                popup=folium.Popup(popup_html, max_width=300)
+            ).add_to(map_obj)

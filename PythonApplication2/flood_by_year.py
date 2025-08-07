@@ -1,6 +1,6 @@
 ﻿from data_loader import load_accident_data
 import geopandas as gpd
-from map_utils import create_map, add_geojson, add_flood_markers, add_logo, add_count_box
+from map_utils import create_map, add_geojson, add_flood_markers, add_logo, add_count_box, add_paygah_markers
 
 def generate_yearly_flood_maps(excel_path, logo_path, shp_path):
     df = load_accident_data(excel_path)
@@ -15,4 +15,6 @@ def generate_yearly_flood_maps(excel_path, logo_path, shp_path):
         add_flood_markers(map_zanjan, df_year)
         add_logo(map_zanjan, logo_path)
         add_count_box(map_zanjan, incident_type, len(df_year), f"سال {year}")
+        # فرض بر این است که paygah.xlsx و paygah_icon.png در مسیر پروژه هستند
+        add_paygah_markers(map_zanjan, "./paygah.xlsx", "./paygah_icon.png")
         map_zanjan.save(f"atlas_zanjan_Flood_{year}.html")

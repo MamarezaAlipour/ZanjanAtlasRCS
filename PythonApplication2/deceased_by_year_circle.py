@@ -4,6 +4,7 @@ import folium
 from folium import Element
 
 from deceased_all_years_circle import add_deceased_circles
+from map_utils import add_paygah_markers
 
 def generate_yearly_deceased_circle_maps(excel_path, logo_path, shp_path):
     df = pd.read_excel(excel_path)
@@ -51,5 +52,8 @@ def generate_yearly_deceased_circle_maps(excel_path, logo_path, shp_path):
         </div>
         """
         map_zanjan.get_root().html.add_child(Element(count_html))
+
+        # افزودن نشانگرهای پایگاه
+        add_paygah_markers(map_zanjan, "./paygah.xlsx", "./paygah_icon.png")
 
         map_zanjan.save(f"atlas_zanjan_Deceased_Circle_{year}.html")

@@ -2,7 +2,7 @@
 import geopandas as gpd
 import folium
 from folium import Element
-from map_utils import add_value_circles
+from map_utils import add_value_circles, add_paygah_markers
 
 def generate_yearly_injury_circle_maps(excel_path, logo_path, shp_path):
     df = pd.read_excel(excel_path)
@@ -50,5 +50,8 @@ def generate_yearly_injury_circle_maps(excel_path, logo_path, shp_path):
         </div>
         """
         map_zanjan.get_root().html.add_child(Element(count_html))
+
+        # فرض بر این است که paygah.xlsx و paygah_icon.png در مسیر پروژه هستند
+        add_paygah_markers(map_zanjan, "./paygah.xlsx", "./paygah_icon.png")
 
         map_zanjan.save(f"atlas_zanjan_Injury_Circle_{year}.html")

@@ -3,7 +3,7 @@ import geopandas as gpd
 import folium
 from folium import Element
 from folium.plugins import HeatMap
-from map_utils import add_injury_heatmap_legend, add_value_circles
+from map_utils import add_injury_heatmap_legend, add_value_circles, add_paygah_markers
 
 def generate_all_years_injury_jaddeh_map(excel_path, logo_path, shp_path):
     df = pd.read_excel(excel_path)
@@ -60,6 +60,9 @@ def generate_all_years_injury_jaddeh_map(excel_path, logo_path, shp_path):
     </div>
     """
     map_zanjan.get_root().html.add_child(Element(count_html))
+
+    # افزودن نشانگرهای پایگاه
+    add_paygah_markers(map_zanjan, "./paygah.xlsx", "./paygah_icon.png")
 
     add_injury_heatmap_legend(map_zanjan)
 

@@ -2,6 +2,7 @@
 import geopandas as gpd
 import folium
 from folium import Element
+from map_utils import add_paygah_markers
 
 def generate_chain_accidents_map(excel_path, logo_path, shp_path):
     df = pd.read_excel(excel_path)
@@ -26,6 +27,9 @@ def generate_chain_accidents_map(excel_path, logo_path, shp_path):
             popup=popup_text,
             icon=folium.Icon(color='darkpurple', icon='car', prefix='fa')
         ).add_to(map_zanjan)
+
+    # افزودن نشانگرهای پایگاه
+    add_paygah_markers(map_zanjan, "./paygah.xlsx", "./paygah_icon.png")
 
     logo_html = f"""
     <div style="position: fixed; top: 10px; right: 10px; z-index:9999;">

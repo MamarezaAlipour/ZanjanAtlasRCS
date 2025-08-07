@@ -3,6 +3,7 @@ import geopandas as gpd
 import folium
 from folium import Element
 from deceased_all_years_jaddeh_circle import add_deceased_circles_black
+from map_utils import add_paygah_markers
 
 def generate_yearly_deceased_jaddeh_circle_maps(excel_path, logo_path, shp_path):
     df = pd.read_excel(excel_path)
@@ -23,6 +24,9 @@ def generate_yearly_deceased_jaddeh_circle_maps(excel_path, logo_path, shp_path)
             value_label="فوتی‌ها",
             extra_popup_columns=["شرح حادثه", "تاريخ وقوع حادثه"]
         )
+
+        # Adding paygah markers
+        add_paygah_markers(map_zanjan, "./paygah.xlsx", "./paygah_icon.png")
 
         logo_html = f"""
         <div style="position: fixed; top: 10px; right: 10px; z-index:9999;">

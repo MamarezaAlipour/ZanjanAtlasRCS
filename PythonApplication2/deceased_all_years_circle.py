@@ -2,6 +2,7 @@
 import geopandas as gpd
 import folium
 from folium import Element
+from map_utils import add_paygah_markers
 
 def add_deceased_circles(map_obj, df, value_column, value_label="فوتی‌ها", extra_popup_columns=None):
     if extra_popup_columns is None:
@@ -70,5 +71,8 @@ def generate_all_years_deceased_circle_map(excel_path, logo_path, shp_path):
     </div>
     """
     map_zanjan.get_root().html.add_child(Element(count_html))
+
+    # Add paygah markers
+    add_paygah_markers(map_zanjan, "./paygah.xlsx", "./paygah_icon.png")
 
     map_zanjan.save("atlas_zanjan_Deceased_Circle_AllYears.html")

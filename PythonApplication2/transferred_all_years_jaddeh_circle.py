@@ -2,7 +2,7 @@
 import geopandas as gpd
 import folium
 from folium import Element
-from map_utils import add_value_circles
+from map_utils import add_value_circles, add_paygah_markers
 
 def generate_all_years_transferred_jaddeh_circle_map(excel_path, logo_path, shp_path):
     df = pd.read_excel(excel_path)
@@ -49,5 +49,8 @@ def generate_all_years_transferred_jaddeh_circle_map(excel_path, logo_path, shp_
     </div>
     """
     map_zanjan.get_root().html.add_child(Element(count_html))
+
+    # Add paygah markers to the map
+    add_paygah_markers(map_zanjan, "./paygah.xlsx", "./paygah_icon.png")
 
     map_zanjan.save("atlas_zanjan_Transferred_Jaddeh_Circle_AllYears.html")

@@ -2,6 +2,7 @@
 import geopandas as gpd
 import folium
 from folium import Element
+from map_utils import add_paygah_markers
 
 def generate_yearly_flood_circle_maps(excel_path, logo_path, shp_path):
     df = pd.read_excel(excel_path)
@@ -27,6 +28,9 @@ def generate_yearly_flood_circle_maps(excel_path, logo_path, shp_path):
                 fill_opacity=0.5,
                 popup=popup_text
             ).add_to(map_zanjan)
+
+        # اضافه کردن نشانگرهای پایگاه به نقشه
+        add_paygah_markers(map_zanjan, "./paygah.xlsx", "./paygah_icon.png")
 
         logo_html = f"""
         <div style="position: fixed; top: 10px; right: 10px; z-index:9999;">

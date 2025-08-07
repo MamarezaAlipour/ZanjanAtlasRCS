@@ -3,6 +3,7 @@ import geopandas as gpd
 import folium
 from folium import Element
 from folium.plugins import HeatMap
+from map_utils import add_paygah_markers
 
 def generate_all_years_snow_heatmap(excel_path, logo_path, shp_path):
     df = pd.read_excel(excel_path)
@@ -29,8 +30,8 @@ def generate_all_years_snow_heatmap(excel_path, logo_path, shp_path):
     for _, row in df_snow.iterrows():
         popup_text = f"""
         <div style="text-align: right; font-family: 'BTitr', Tahoma, Arial, sans-serif;">
-            <strong>تاریخ: </strong>{row['تاریخ']}<br>
-            <strong>مکان: </strong>{row['مکان']}<br>
+            <strong>تاریخ: </strong>{row['تاريخ وقوع حادثه']}<br>
+            <strong>مکان: </strong>{row['محل دقیق حادثه']}<br>
             <strong>شرح حادثه: </strong>{row['شرح حادثه']}
         </div>
         """
@@ -70,5 +71,8 @@ def generate_all_years_snow_heatmap(excel_path, logo_path, shp_path):
     </div>
     """
     map_zanjan.get_root().html.add_child(Element(count_html))
+
+    # فرض بر این است که paygah.xlsx و paygah_icon.png در مسیر پروژه هستند
+    add_paygah_markers(map_zanjan, "./paygah.xlsx", "./paygah_icon.png")
 
     map_zanjan.save("atlas_zanjan_Snow_HeatMap_AllYears.html")

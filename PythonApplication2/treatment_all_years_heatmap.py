@@ -3,6 +3,7 @@ import geopandas as gpd
 import folium
 from folium import Element
 from folium.plugins import HeatMap
+from map_utils import add_paygah_markers
 
 def generate_all_years_treatment_heatmap(excel_path, logo_path, shp_path):
     df = pd.read_excel(excel_path)
@@ -53,5 +54,5 @@ def generate_all_years_treatment_heatmap(excel_path, logo_path, shp_path):
     </div>
     """
     map_zanjan.get_root().html.add_child(Element(count_html))
-
+    add_paygah_markers(map_zanjan, "./paygah.xlsx", "./paygah_icon.png")
     map_zanjan.save("atlas_zanjan_Treatment_HeatMap_AllYears.html")

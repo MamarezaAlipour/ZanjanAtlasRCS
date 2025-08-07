@@ -2,7 +2,7 @@
 import geopandas as gpd
 import folium
 from folium import Element
-from map_utils import add_value_circles
+from map_utils import add_value_circles, add_paygah_markers
 
 def generate_yearly_transferred_circle_maps(excel_path, logo_path, shp_path):
     df = pd.read_excel(excel_path)
@@ -22,6 +22,9 @@ def generate_yearly_transferred_circle_maps(excel_path, logo_path, shp_path):
             value_label="مصدومین انتقالي",
             extra_popup_columns=["نوع حادثه", "شرح حادثه", "تاريخ وقوع حادثه"]
         )
+
+        # اضافه کردن نشانگرهای پایگاه
+        add_paygah_markers(map_zanjan, "./paygah.xlsx", "./paygah_icon.png")
 
         logo_html = f"""
         <div style="position: fixed; top: 10px; right: 10px; z-index:9999;">

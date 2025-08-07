@@ -2,6 +2,7 @@
 import geopandas as gpd
 import folium
 from folium import Element
+from map_utils import add_paygah_markers
 
 def generate_yearly_jaddeh_circle_maps(excel_path, logo_path, shp_path):
     df = pd.read_excel(excel_path)
@@ -54,5 +55,8 @@ def generate_yearly_jaddeh_circle_maps(excel_path, logo_path, shp_path):
         </div>
         """
         map_zanjan.get_root().html.add_child(Element(count_html))
+
+        # Assuming paygah.xlsx and paygah_icon.png are in the project path
+        add_paygah_markers(map_zanjan, "./paygah.xlsx", "./paygah_icon.png")
 
         map_zanjan.save(f"atlas_zanjan_Jaddeh_Circle_{year}.html")
