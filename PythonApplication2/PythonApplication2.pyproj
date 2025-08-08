@@ -67,6 +67,8 @@
     <Compile Include="nejatfanni_by_year_circle.py" />
     <Compile Include="nejatfanni_utils.py" />
     <Compile Include="PythonApplication2.py" />
+    <Compile Include="settled_all_years_circle.py" />
+    <Compile Include="settled_all_years_heatmap.py" />
     <Compile Include="snow_all_years.py" />
     <Compile Include="snow_all_years_circle.py" />
     <Compile Include="snow_all_years_heatmap.py" />
