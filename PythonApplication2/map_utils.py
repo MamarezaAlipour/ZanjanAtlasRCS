@@ -15,7 +15,7 @@ def add_markers(map_obj, df):
         <style>
         @font-face {{
             font-family: 'BNazanin';
-            src: url('B-NAZANIN.TTF') format('truetype');
+            src: url('Static/B-NAZANIN.TTF') format('truetype');
             font-weight: normal;
             font-style: normal;
         }}
@@ -46,7 +46,7 @@ def add_count_box(map_obj, incident_type, count, year_text):
     <style>
     @font-face {{
         font-family: 'BTitr';
-        src: url('BTitr.ttf') format('truetype');
+        src: url('Static/BTitr.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;
     }}
@@ -148,7 +148,7 @@ def add_value_circles(map_obj, df, value_column, value_label="مقدار", extra
             <style>
             @font-face {{
                 font-family: 'BNazanin';
-                src: url('B-NAZANIN.TTF') format('truetype');
+                src: url('Static/B-NAZANIN.TTF') format('truetype');
                 font-weight: normal;
                 font-style: normal;
             }}
@@ -233,7 +233,7 @@ def add_paygah_markers(map_obj, paygah_path, icon_path):
             <style>
             @font-face {{
                 font-family: 'BNazanin';
-                src: url('B-NAZANIN.TTF') format('truetype');
+                src: url('Static/B-NAZANIN.TTF') format('truetype');
                 font-weight: normal;
                 font-style: normal;
             }}

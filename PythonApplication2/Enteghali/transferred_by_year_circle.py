@@ -1,0 +1,57 @@
+﻿import pandas as pd
+import geopandas as gpd
+import folium
+from folium import Element
+from map_utils import add_value_circles, add_paygah_markers
+
+def generate_yearly_transferred_circle_maps(excel_path, logo_path, shp_path):
+    df = pd.read_excel(excel_path)
+    df = df.dropna(subset=['عرض جغرافیایی(N)', 'طول جغرافیایی(E)', 'مصدومين انتقالي توسط جمعیت/نفر'])
+    df['مصدومين انتقالي توسط جمعیت/نفر'] = pd.to_numeric(df['مصدومين انتقالي توسط جمعیت/نفر'], errors='coerce').fillna(0)
+    df['سال'] = df['تاريخ وقوع حادثه'].astype(str).str[:4]
+
+    gdf = gpd.read_file(shp_path)
+    for year in range(1393, 1404):
+        map_zanjan = folium.Map(location=[36.6769, 48.4850], zoom_start=8)
+        folium.GeoJson(gdf).add_to(map_zanjan)
+        df_year = df[df['سال'] == str(year)]
+        add_value_circles(
+            map_zanjan,
+            df_year,
+            "مصدومين انتقالي توسط جمعیت/نفر",
+            value_label="مصدومین انتقالي",
+            extra_popup_columns=["نوع حادثه", "شرح حادثه", "تاريخ وقوع حادثه"]
+        )
+
+        # اضافه کردن نشانگرهای پایگاه
+        add_paygah_markers(map_zanjan, "./Data/paygah.xlsx", "./Data/paygah_icon.png")
+
+        logo_html = f"""
+        <div style="position: fixed; top: 10px; right: 10px; z-index:9999;">
+            <img src="{logo_path}" alt="logo" width="85">
+        </div>
+        """
+        map_zanjan.get_root().html.add_child(Element(logo_html))
+
+        total_transferred_year = int(df_year["مصدومين انتقالي توسط جمعیت/نفر"].sum())
+        count_html = f"""
+        <style>
+        @font-face {{
+            font-family: 'BTitr';
+            src: url('Static/BTitr.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }}
+        .titr-box {{
+            font-family: 'BTitr', Tahoma, Arial, sans-serif !important;
+        }}
+        </style>
+        <div class="titr-box" style="position: fixed; bottom: 20px; left: 20px; z-index:9999;
+                    background: rgba(255,255,255,0.9); border-radius: 8px; padding: 10px 18px;
+                    font-size: 18px; color: #d32f2f; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+            مجموع مصدومین انتقالي توسط جمعیت سال {year}: {total_transferred_year}
+        </div>
+        """
+        map_zanjan.get_root().html.add_child(Element(count_html))
+
+        map_zanjan.save(f"atlas_zanjan_Transferred_Circle_{year}.html")
