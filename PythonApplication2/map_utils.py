@@ -1,6 +1,7 @@
 ﻿import folium
 from folium import Element
 import pandas as pd
+import os
 
 def create_map(center, zoom):
     return folium.Map(location=center, zoom_start=zoom)
@@ -14,13 +15,18 @@ def add_markers(map_obj, df):
         popup_html = f"""
         <style>
         @font-face {{
-            font-family: 'BNazanin';
-            src: url('Static/B-NAZANIN.TTF') format('truetype');
+            font-family: 'B Nazanin';
+            src: url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.eot");
+            src: url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.eot?#iefix")format("embedded-opentype"),
+            url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.woff2")format("woff2"),
+            url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.woff")format("woff"),
+            url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.ttf")format("truetype"),
+            url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.svg#B Nazanin")format("svg");
             font-weight: normal;
             font-style: normal;
         }}
         .nazanin-popup {{
-            font-family: 'BNazanin', Tahoma, Arial, sans-serif !important;
+            font-family: 'B Nazanin', Tahoma, Arial, sans-serif !important;
             font-size: 16px;
             text-align: center;
         }}
@@ -45,13 +51,16 @@ def add_count_box(map_obj, incident_type, count, year_text):
     count_html = f"""
     <style>
     @font-face {{
-        font-family: 'BTitr';
-        src: url('Static/BTitr.ttf') format('truetype');
-        font-weight: normal;
-        font-style: normal;
+        font-family: "B Titr Bold";
+        src: url("https://db.onlinewebfonts.com/t/a0ea7e7833cd4f7694a4913fccb9aacf.eot");
+        src: url("https://db.onlinewebfonts.com/t/a0ea7e7833cd4f7694a4913fccb9aacf.eot?#iefix")format("embedded-opentype"),
+        url("https://db.onlinewebfonts.com/t/a0ea7e7833cd4f7694a4913fccb9aacf.woff2")format("woff2"),
+        url("https://db.onlinewebfonts.com/t/a0ea7e7833cd4f7694a4913fccb9aacf.woff")format("woff"),
+        url("https://db.onlinewebfonts.com/t/a0ea7e7833cd4f7694a4913fccb9aacf.ttf")format("truetype"),
+        url("https://db.onlinewebfonts.com/t/a0ea7e7833cd4f7694a4913fccb9aacf.svg#B Titr Bold")format("svg");
     }}
     .titr-box {{
-        font-family: 'BTitr', Tahoma, Arial, sans-serif !important;
+        font-family: 'B Titr Bold', Tahoma, Arial, sans-serif !important;
     }}
     </style>
     <div class="titr-box" style="position: fixed; bottom: 20px; left: 20px; z-index:9999;
@@ -147,13 +156,18 @@ def add_value_circles(map_obj, df, value_column, value_label="مقدار", extra
             popup_html = f"""
             <style>
             @font-face {{
-                font-family: 'BNazanin';
-                src: url('Static/B-NAZANIN.TTF') format('truetype');
+                font-family: 'B Nazanin';
+                src: url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.eot");
+                src: url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.eot?#iefix")format("embedded-opentype"),
+                url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.woff2")format("woff2"),
+                url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.woff")format("woff"),
+                url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.ttf")format("truetype"),
+                url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.svg#B Nazanin")format("svg");
                 font-weight: normal;
                 font-style: normal;
             }}
             .nazanin-popup {{
-                font-family: 'BNazanin', Tahoma, Arial, sans-serif !important;
+                font-family: 'B Nazanin', Tahoma, Arial, sans-serif !important;
                 font-size: 16px;
                 text-align: center;
             }}
@@ -232,13 +246,18 @@ def add_paygah_markers(map_obj, paygah_path, icon_path):
             popup_html = f"""
             <style>
             @font-face {{
-                font-family: 'BNazanin';
-                src: url('Static/B-NAZANIN.TTF') format('truetype');
+                font-family: 'B Nazanin';
+                src: url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.eot");
+                src: url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.eot?#iefix")format("embedded-opentype"),
+                url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.woff2")format("woff2"),
+                url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.woff")format("woff"),
+                url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.ttf")format("truetype"),
+                url("https://db.onlinewebfonts.com/t/3671adca6f650c92b83f906e49656986.svg#B Nazanin")format("svg");
                 font-weight: normal;
                 font-style: normal;
             }}
             .nazanin-popup {{
-                font-family: 'BNazanin', Tahoma, Arial, sans-serif !important;
+                font-family: 'B Nazanin', Tahoma, Arial, sans-serif !important;
                 font-size: 16px;
                 text-align: center;
             }}
@@ -250,3 +269,19 @@ def add_paygah_markers(map_obj, paygah_path, icon_path):
                 icon=icon,
                 popup=folium.Popup(popup_html, max_width=300)
             ).add_to(map_obj)
+
+def get_output_path(filename: str) -> str:
+    """
+    مسیر خروجی را بر اساس مسیر فایل فعلی و نام فایل خروجی می‌سازد.
+    خروجی را در پوشه output کنار پوشه هر دسته قرار می‌دهد.
+    """
+    # مسیر فایل فعلی (مثلاً .../Mountain/mountain_all_years.py)
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # اگر map_utils.py در ریشه پروژه است، باید مسیر فایل فراخواننده را بگیری
+    # پس از inspect استفاده می‌کنیم:
+    import inspect
+    caller_file = inspect.stack()[1].filename
+    caller_dir = os.path.dirname(os.path.abspath(caller_file))
+    output_dir = os.path.join(caller_dir, "output")
+    os.makedirs(output_dir, exist_ok=True)
+    return os.path.join(output_dir, filename)
