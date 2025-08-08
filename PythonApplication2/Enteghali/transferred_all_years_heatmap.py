@@ -36,17 +36,18 @@ def generate_all_years_transferred_heatmap(excel_path, logo_path, shp_path):
 
     total_transferred = int(df["مصدومين انتقالي توسط جمعیت/نفر"].sum())
     count_html = f"""
-    <style>
     @font-face {{
-        font-family: 'BTitr';
-        src: url('Static/BTitr.ttf') format('truetype');
-        font-weight: normal;
-        font-style: normal;
+        font-family: "B Titr Bold";
+        src: url("https://db.onlinewebfonts.com/t/a0ea7e7833cd4f7694a4913fccb9aacf.eot");
+        src: url("https://db.onlinewebfonts.com/t/a0ea7e7833cd4f7694a4913fccb9aacf.eot?#iefix")format("embedded-opentype"),
+        url("https://db.onlinewebfonts.com/t/a0ea7e7833cd4f7694a4913fccb9aacf.woff2")format("woff2"),
+        url("https://db.onlinewebfonts.com/t/a0ea7e7833cd4f7694a4913fccb9aacf.woff")format("woff"),
+        url("https://db.onlinewebfonts.com/t/a0ea7e7833cd4f7694a4913fccb9aacf.ttf")format("truetype"),
+        url("https://db.onlinewebfonts.com/t/a0ea7e7833cd4f7694a4913fccb9aacf.svg#B Titr Bold")format("svg");
     }}
     .titr-box {{
-        font-family: 'BTitr', Tahoma, Arial, sans-serif !important;
+        font-family: 'B Titr Bold', Tahoma, Arial, sans-serif !important;
     }}
-    </style>
     <div class="titr-box" style="position: fixed; bottom: 20px; left: 20px; z-index:9999;
                 background: rgba(255,255,255,0.9); border-radius: 8px; padding: 10px 18px;
                 font-size: 18px; color: #d32f2f; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
