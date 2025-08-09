@@ -5,6 +5,8 @@ et_xmlfile==2.0.0
 folium==0.20.0
 geopandas==1.1.1
 idna==3.10
+jalali_core==1.0.0
+jdatetime==5.2.0
 Jinja2==3.1.6
 MarkupSafe==3.0.2
 numpy==2.3.2

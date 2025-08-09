@@ -25,6 +25,7 @@
     <Compile Include="add_shp_to_gpkg.py" />
     <Compile Include="Aquatic\aquatic_all_years.py" />
     <Compile Include="Aquatic\aquatic_by_year.py" />
+    <Compile Include="Jaddeh\jaddeh_by_weekday_circle.py" />
     <Compile Include="Jaddeh\Zanjireei\chain_accidents_map.py" />
     <Compile Include="data_loader.py" />
     <Compile Include="Foti\deceased_all_years_circle.py" />
