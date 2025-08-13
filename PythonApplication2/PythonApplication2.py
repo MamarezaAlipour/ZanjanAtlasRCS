@@ -54,14 +54,14 @@ from Jaddeh.NejatFanni.nejatfanni_by_year_circle import generate_yearly_nejatfan
 from Eskaan.settled_all_years_circle import generate_all_years_settled_circle_map
 from Eskaan.settled_all_years_heatmap import generate_all_years_settled_heatmap
 from Jaddeh.jaddeh_by_weekday_circle import generate_jaddeh_weekday_circle_maps
-from statistical_charts import (
+from Statistical.statistical_charts import (
     plot_incident_count_by_year,
     plot_injury_deceased_trend,
     plot_incident_type_pie,
     generate_spatial_scatter_osm,
     plot_jaddeh_weekday_bar
 )
-from statistical_table_generator import generate_incident_type_frequency_table, generate_geospatial_hotspot_table, generate_geospatial_hotspot_table_with_road
+from Statistical.statistical_table_generator import generate_incident_type_frequency_table, generate_geospatial_hotspot_table, generate_geospatial_hotspot_table_with_road
 
 nejatfanni_path= "./Data/nejatfanni.xlsx"
 excel_path = "./Data/havades.xlsx"
