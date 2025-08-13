@@ -11,7 +11,8 @@
     <OutputPath>.</OutputPath>
     <Name>PythonApplication2</Name>
     <RootNamespace>PythonApplication2</RootNamespace>
-    <InterpreterId>MSBuild|env2|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>MSBuild|env1|$(MSBuildProjectFullPath)</InterpreterId>
+    <SuppressPackageInstallationPrompt>True</SuppressPackageInstallationPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -84,6 +85,7 @@
     <Compile Include="Sarpaei\treatment_all_years_circle.py" />
     <Compile Include="Sarpaei\treatment_all_years_heatmap.py" />
     <Compile Include="Sarpaei\treatment_by_year_circle.py" />
+    <Compile Include="statistical_charts.py" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env1\">
