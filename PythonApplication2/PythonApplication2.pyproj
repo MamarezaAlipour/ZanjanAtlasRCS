@@ -85,7 +85,8 @@
     <Compile Include="Sarpaei\treatment_all_years_circle.py" />
     <Compile Include="Sarpaei\treatment_all_years_heatmap.py" />
     <Compile Include="Sarpaei\treatment_by_year_circle.py" />
-    <Compile Include="statistical_charts.py" />
+    <Compile Include="Statistical\statistical_charts.py" />
+    <Compile Include="Statistical\statistical_table_generator.py" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env1\">
@@ -128,6 +129,7 @@
     <Folder Include="Foti\" />
     <Folder Include="Fire\" />
     <Folder Include="Masdoom\" />
+    <Folder Include="Statistical\" />
     <Folder Include="Sarpaei\" />
     <Folder Include="Snow\" />
   </ItemGroup>
