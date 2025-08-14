@@ -62,15 +62,17 @@ from Statistical.statistical_charts import (
     plot_jaddeh_weekday_bar
 )
 from Statistical.statistical_table_generator import generate_incident_type_frequency_table, generate_geospatial_hotspot_table, generate_geospatial_hotspot_table_with_road
+from Statistical.traffic_accident_ratio import calculate_accident_traffic_ratio
 
 nejatfanni_path= "./Data/nejatfanni.xlsx"
 excel_path = "./Data/havades.xlsx"
-# output_excel_path = "./incident_type_frequency_table.xlsx"
+output_excel_path = "./traffic_accident_ratio_table.xlsx"
 logo_path = "https://helal.storage.c2.liara.space/logo.png"
 shp_path = "./Naghsheh/Export_Output_4.shp"
 paygah_path = "./Data/paygah.xlsx"
 paygah_icon_path = "./Data/paygah_icon.png"
 
+calculate_accident_traffic_ratio(excel_path, n_clusters=8, output_excel_path=output_excel_path)
 # output_excel_path = "./geospatial_hotspot_table_with_road.xlsx"
 # generate_geospatial_hotspot_table_with_road(excel_path, n_clusters=8, output_excel_path=output_excel_path)
 # generate_all_years_map(excel_path, logo_path, shp_path)

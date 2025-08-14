@@ -87,6 +87,7 @@
     <Compile Include="Sarpaei\treatment_by_year_circle.py" />
     <Compile Include="Statistical\statistical_charts.py" />
     <Compile Include="Statistical\statistical_table_generator.py" />
+    <Compile Include="Statistical\traffic_accident_ratio.py" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env1\">
