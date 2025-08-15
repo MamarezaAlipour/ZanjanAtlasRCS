@@ -59,7 +59,12 @@ from Statistical.statistical_charts import (
     plot_injury_deceased_trend,
     plot_incident_type_pie,
     generate_spatial_scatter_osm,
-    plot_jaddeh_weekday_bar
+    plot_injury_trend,
+    plot_jaddeh_weekday_bar,
+    plot_transferred_trend,
+    plot_treated_trend,
+    plot_total_aided_trend,
+
 )
 from Statistical.statistical_table_generator import generate_incident_type_frequency_table, generate_geospatial_hotspot_table, generate_geospatial_hotspot_table_with_road
 from Statistical.traffic_accident_ratio import calculate_accident_traffic_ratio
@@ -72,9 +77,9 @@ shp_path = "./Naghsheh/Export_Output_4.shp"
 paygah_path = "./Data/paygah.xlsx"
 paygah_icon_path = "./Data/paygah_icon.png"
 
-calculate_accident_traffic_ratio(excel_path, n_clusters=8, output_excel_path=output_excel_path)
+# calculate_accident_traffic_ratio(excel_path, n_clusters=8, output_excel_path)
 # output_excel_path = "./geospatial_hotspot_table_with_road.xlsx"
-# generate_geospatial_hotspot_table_with_road(excel_path, n_clusters=8, output_excel_path=output_excel_path)
+# generate_geospatial_hotspot_table_with_road(excel_path, n_clusters=8, output_excel_path)
 # generate_all_years_map(excel_path, logo_path, shp_path)
 # generate_yearly_maps(excel_path, logo_path, shp_path)
 # generate_all_years_snow_map(excel_path, logo_path, shp_path)
@@ -132,6 +137,10 @@ calculate_accident_traffic_ratio(excel_path, n_clusters=8, output_excel_path=out
 # generate_jaddeh_weekday_circle_maps(excel_path, logo_path, shp_path)
 # plot_incident_count_by_year(excel_path)
 # plot_injury_deceased_trend(excel_path)
-# plot_incident_type_pie(excel_path)
-# generate_spatial_scatter_osm(excel_path, logo_path, shp_path)
-# plot_jaddeh_weekday_bar(excel_path)
+# plot_injury_trend(excel_path)
+# # plot_incident_type_pie(excel_path)
+# # generate_spatial_scatter_osm(excel_path, logo_path, shp_path)
+# # plot_jaddeh_weekday_bar(excel_path)
+# plot_transferred_trend(excel_path)
+# plot_treated_trend(excel_path)
+# plot_total_aided_trend(excel_path)

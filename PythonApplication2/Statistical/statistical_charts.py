@@ -38,20 +38,29 @@ def plot_incident_count_by_year(excel_path):
 def plot_injury_deceased_trend(excel_path):
     df = pd.read_excel(excel_path)
     df['سال'] = df['تاريخ وقوع حادثه'].astype(str).str[:4]
-    injury = df.groupby('سال')['تعداد کل مصدومین در حادثه /نفر'].sum()
     deceased = df.groupby('سال')['مجموع کل فوتی'].sum()
     plt.figure(figsize=(8,5))
-    plt.plot(injury.index, injury.values, marker='o', label=fa('مصدومین'), color='orange')
-    plt.plot(deceased.index, deceased.values, marker='s', label=fa('فوتی‌ها'), color='black')
-    # نمایش مقدار بالای هر نقطه
-    for i, (x, y) in enumerate(zip(injury.index, injury.values)):
+    plt.plot(deceased.index, deceased.values, marker='s', color='black')
+    for x, y in zip(deceased.index, deceased.values):
         plt.text(x, y + 2, str(int(y)), ha='center', va='bottom', fontproperties=font_prop, fontsize=FONT_SIZE)
-    for i, (x, y) in enumerate(zip(deceased.index, deceased.values)):
-        plt.text(x, y + 2, str(int(y)), ha='center', va='bottom', fontproperties=font_prop, fontsize=FONT_SIZE)
-    plt.title(fa('روند سالانه مصدومین و فوتی‌ها'), fontproperties=font_prop, fontsize=FONT_SIZE)
+    plt.title(fa('روند سالانه فوتی‌ها'), fontproperties=font_prop, fontsize=FONT_SIZE)
     plt.xlabel(fa('سال'), fontproperties=font_prop, fontsize=FONT_SIZE)
-    plt.ylabel(fa('تعداد'), fontproperties=font_prop, fontsize=FONT_SIZE)
-    plt.legend(prop=font_prop, fontsize=FONT_SIZE)
+    plt.ylabel(fa('تعداد فوتی‌ها'), fontproperties=font_prop, fontsize=FONT_SIZE)
+    plt.grid(True, linestyle='--', alpha=0.5)
+    plt.tight_layout()
+    plt.show()
+
+def plot_injury_trend(excel_path):
+    df = pd.read_excel(excel_path)
+    df['سال'] = df['تاريخ وقوع حادثه'].astype(str).str[:4]
+    injury = df.groupby('سال')['تعداد کل مصدومین در حادثه /نفر'].sum()
+    plt.figure(figsize=(8,5))
+    plt.plot(injury.index, injury.values, marker='o', color='orange')
+    for x, y in zip(injury.index, injury.values):
+        plt.text(x, y + 2, str(int(y)), ha='center', va='bottom', fontproperties=font_prop, fontsize=FONT_SIZE)
+    plt.title(fa('روند سالانه مصدومین'), fontproperties=font_prop, fontsize=FONT_SIZE)
+    plt.xlabel(fa('سال'), fontproperties=font_prop, fontsize=FONT_SIZE)
+    plt.ylabel(fa('تعداد مصدومین'), fontproperties=font_prop, fontsize=FONT_SIZE)
     plt.grid(True, linestyle='--', alpha=0.5)
     plt.tight_layout()
     plt.show()
@@ -211,3 +220,51 @@ def generate_spatial_scatter_osm(excel_path, logo_path, shp_path, output_html="a
     map_zanjan.get_root().html.add_child(folium.Element(count_html))
 
     map_zanjan.save(output_html)
+
+def plot_transferred_trend(excel_path):
+    df = pd.read_excel(excel_path)
+    df['سال'] = df['تاريخ وقوع حادثه'].astype(str).str[:4]
+    transferred = df.groupby('سال')['مصدومين انتقالي توسط جمعیت/نفر'].sum()
+    plt.figure(figsize=(8,5))
+    plt.plot(transferred.index, transferred.values, marker='D', color='#1976d2')
+    for x, y in zip(transferred.index, transferred.values):
+        plt.text(x, y + 2, str(int(y)), ha='center', va='bottom', fontproperties=font_prop, fontsize=FONT_SIZE)
+    plt.title(fa('روند سالانه مصدومین انتقالی توسط جمعیت'), fontproperties=font_prop, fontsize=FONT_SIZE)
+    plt.xlabel(fa('سال'), fontproperties=font_prop, fontsize=FONT_SIZE)
+    plt.ylabel(fa('مصدومین انتقالی'), fontproperties=font_prop, fontsize=FONT_SIZE)
+    plt.grid(True, linestyle='--', alpha=0.5)
+    plt.tight_layout()
+    plt.show()
+
+def plot_treated_trend(excel_path):
+    df = pd.read_excel(excel_path)
+    df['سال'] = df['تاريخ وقوع حادثه'].astype(str).str[:4]
+    treated = df.groupby('سال')['درمان سرپايي توسط جمعیت/نفر'].sum()
+    plt.figure(figsize=(8,5))
+    plt.plot(treated.index, treated.values, marker='^', color='#388e3c')
+    for x, y in zip(treated.index, treated.values):
+        plt.text(x, y + 2, str(int(y)), ha='center', va='bottom', fontproperties=font_prop, fontsize=FONT_SIZE)
+    plt.title(fa('روند سالانه درمان سرپایی توسط جمعیت'), fontproperties=font_prop, fontsize=FONT_SIZE)
+    plt.xlabel(fa('سال'), fontproperties=font_prop, fontsize=FONT_SIZE)
+    plt.ylabel(fa('درمان سرپایی'), fontproperties=font_prop, fontsize=FONT_SIZE)
+    plt.grid(True, linestyle='--', alpha=0.5)
+    plt.tight_layout()
+    plt.show()
+
+def plot_total_aided_trend(excel_path):
+    df = pd.read_excel(excel_path)
+    df['سال'] = df['تاريخ وقوع حادثه'].astype(str).str[:4]
+    if 'تعداد کل افراد امدادرسانی شده' in df.columns:
+        total_aided = df.groupby('سال')['تعداد کل افراد امدادرسانی شده'].sum()
+        plt.figure(figsize=(8,5))
+        plt.plot(total_aided.index, total_aided.values, marker='o', color='#fbc02d')
+        for x, y in zip(total_aided.index, total_aided.values):
+            plt.text(x, y + 2, str(int(y)), ha='center', va='bottom', fontproperties=font_prop, fontsize=FONT_SIZE)
+        plt.title(fa('روند سالانه کل افراد امدادرسانی شده'), fontproperties=font_prop, fontsize=FONT_SIZE)
+        plt.xlabel(fa('سال'), fontproperties=font_prop, fontsize=FONT_SIZE)
+        plt.ylabel(fa('کل افراد امدادرسانی شده'), fontproperties=font_prop, fontsize=FONT_SIZE)
+        plt.grid(True, linestyle='--', alpha=0.5)
+        plt.tight_layout()
+        plt.show()
+    else:
+        print("ستون 'تعداد کل افراد امدادرسانی شده' در فایل وجود ندارد.")
